@@ -7,7 +7,7 @@ import { RoleGuard } from './role.guard';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      load: [() => require('gsa.json')], // Replace with the path to your service account JSON file
+      load: [() => ({ serviceAccountEmail: 'xxx.iam.gserviceaccount.com' })], // Replace with your service account email
     }),
   ],
   controllers: [AppController],

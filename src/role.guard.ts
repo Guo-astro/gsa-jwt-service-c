@@ -8,7 +8,7 @@ export class RoleGuard implements CanActivate {
   private readonly serviceAccountEmail: string;
 
   constructor(private configService: ConfigService) {
-    const email = this.configService.get<string>('client_email'); // Match Service B's key
+    const email = this.configService.get<string>('serviceAccountEmail'); // Match Service B's key
     if (!email) {
       throw new Error('Service account email is not configured');
     }
@@ -28,7 +28,7 @@ export class RoleGuard implements CanActivate {
       console.log('Fetched certificates:', Object.keys(certs)); // Debug certificates
 
       // Decode token header to get kid
-      const decodedHeader = jwt.decode(token, { complete: true })?.header;
+      const decodedHeader = jwt.decode(token, { complete: true });
       console.log('Token header:', decodedHeader); // Debug token header
 
       const publicKey = certs[decodedHeader?.kid];
